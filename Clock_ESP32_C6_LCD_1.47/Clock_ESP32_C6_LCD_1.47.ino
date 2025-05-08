@@ -12,7 +12,7 @@
 
 // NTP server settings
 #define NTP_SERVER "pool.ntp.org"
-#define UTC_OFFSET 0 // UTC offset in seconds (0 for UTC)
+#define UTC_OFFSET (8 * 3600) // UTC offset in seconds (0 for UTC)
 #define UTC_OFFSET_DST 0 // Daylight saving time offset in seconds
 
 // SPI pins
@@ -22,7 +22,7 @@
 #define TFT_MOSI  6
 #define TFT_SCK   7
 // Backlight pin (optional, comment out if not used)
-#define TFT_BL    22
+#define TFT_BL    22 
 
 // Colors (RGB565 format)
 #define COLOR_BLACK 0x0000
@@ -77,6 +77,8 @@ void setup() {
   // Configure time with NTP server
   configTime(UTC_OFFSET, UTC_OFFSET_DST, NTP_SERVER);
   Serial.println("Synchronizing time...");
+  tft.setCursor(0, LCD_HEIGHT/4);
+  tft.print("Current Time");
 }
 
 void loop() {
